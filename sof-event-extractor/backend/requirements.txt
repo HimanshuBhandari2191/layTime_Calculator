@@ -4,5 +4,4 @@ azure-storage-blob==12.26.0
 requests==2.32.5
 # pyodbc is optional and usually installed with system drivers on the host
 # pyodbc==5.2.0
-gunicorn==23.0.0
 
