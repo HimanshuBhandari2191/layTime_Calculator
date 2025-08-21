@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import os
-import pyodbc
 
 
 def get_sql_connection():
@@ -29,6 +28,8 @@ def get_sql_connection():
 		"TrustServerCertificate=no;"
 		"Connection Timeout=30;"
 	)
+	# Import locally so other parts of the app can run without pyodbc installed
+	import pyodbc  # type: ignore
 	return pyodbc.connect(conn_str)
 
 
