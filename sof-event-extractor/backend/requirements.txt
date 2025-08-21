@@ -1,7 +1,0 @@
-flask==3.1.2
-flask-cors==5.0.0
-azure-storage-blob==12.26.0
-requests==2.32.5
-# pyodbc is optional and usually installed with system drivers on the host
-# pyodbc==5.2.0
-
