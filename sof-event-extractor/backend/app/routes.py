@@ -28,7 +28,7 @@ def upload():
 	uploaded_file = request.files["file"]
 	file_bytes = uploaded_file.read()
 
-	# Parse events (stub implementation for now)
+	# Parse events using OCR + NLP pipeline
 	parsed = extract_events(file_bytes, uploaded_file.filename)
 
 	# Upload original document to Azure Blob if configured
@@ -42,6 +42,39 @@ def upload():
 			return jsonify({"result": parsed, "blob": None, "upload_error": str(exc)}), 200
 
 	return jsonify({"result": parsed, "blob": blob_name}), 200
+
+
+@api_bp.get("/test-ocr")
+def test_ocr():
+	"""Test endpoint to verify OCR functionality."""
+	from app.services.ocr_service import OCRService
+	
+	# Create a simple test image with text
+	from PIL import Image, ImageDraw, ImageFont
+	import io
+	
+	# Create a test image
+	img = Image.new('RGB', (400, 200), color='white')
+	draw = ImageDraw.Draw(img)
+	
+	# Add some maritime text
+	test_text = "Cargo Loading\nStart: 08:30\nEnd: 14:45"
+	draw.text((20, 20), test_text, fill='black')
+	
+	# Convert to bytes
+	img_bytes = io.BytesIO()
+	img.save(img_bytes, format='PNG')
+	img_bytes.seek(0)
+	
+	# Test OCR
+	ocr_service = OCRService()
+	extracted_text = ocr_service.extract_text_from_image(img_bytes.getvalue())
+	
+	return jsonify({
+		"ocr_working": bool(extracted_text),
+		"extracted_text": extracted_text,
+		"test_image_created": True
+	}), 200
 
 
 @api_bp.post("/export/json")
