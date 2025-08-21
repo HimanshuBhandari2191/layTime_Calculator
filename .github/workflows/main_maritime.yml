@@ -27,10 +27,11 @@ jobs:
       - name: Create and start virtual environment
         run: |
           python -m venv venv
-          source venv/bin/activate
-      
-      - name: Install dependencies
-        run: pip install -r requirements.txt
+          python -m pip install --upgrade pip
+          python -m pip install flask
+          python -m pip install azure-storage-blob
+          python -m pip install pyodbc
+
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -68,4 +69,10 @@ jobs:
         with:
           app-name: 'MariTime'
           slot-name: 'Production'
+
           
+
+
+
+
+
