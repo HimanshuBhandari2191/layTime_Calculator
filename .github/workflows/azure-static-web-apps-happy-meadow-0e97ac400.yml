@@ -28,10 +28,10 @@ jobs:
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
-          app_location: "sof-event-extractor/frontend" # App source code path (Vite app)
-          api_location: "" # No Functions API; Flask runs separately
-          output_location: "dist" # Vite build output directory
-          app_build_command: "npm ci && npm run build" # Ensure a deterministic build
+          app_location: "sof-event-extractor/frontend"
+          api_location: "sof-event-extractor/api"
+          output_location: "dist"
+          app_build_command: "npm ci && npm run build"
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

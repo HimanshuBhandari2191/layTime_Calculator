@@ -1,0 +1,15 @@
+Maritime Event Log
+
+Vessel: MV Test Ship
+Date: 2025-01-15
+
+08:30 - Vessel arrived at port
+09:00 - Pilot onboard
+09:30 - Berthing operations started
+10:00 - Cargo loading began
+14:00 - Cargo loading completed
+15:00 - Pilot disembarked
+15:30 - Vessel departed
+
+Events extracted successfully.
+
