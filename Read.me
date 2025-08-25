@@ -1,0 +1,75 @@
+# SOF Extractor
+
+## Overview
+The SOF Extractor is a tool designed to process Statements of Facts (SOF) for vessels at ports. These documents often contain detailed logs of vessel activities, timestamps, and port operations. The extractor automates the process of parsing, extracting, and structuring these facts into a usable format. This eliminates the need for manual entry, reduces errors, and speeds up workflows in shipping, logistics, and related industries.
+
+## Features
+- Upload SOF documents (PDF, DOCX, or TXT)
+- Extract structured data such as:
+  - Vessel Name
+  - Port Name
+  - Arrival & Departure timestamps
+  - Cargo operations (Loading/Discharge times)
+  - Weather delays / Stoppages
+- Save extracted data into Azure Blob Storage
+- Provide processed results via an API for integration into other systems (e.g., Laytime Calculator)
+
+## Tech Stack
+- **Backend:** Python (FastAPI/Flask)
+- **Document Parsing:** PyPDF2, Regex, NLP libraries
+- **Cloud Storage:** Azure Blob Storage
+- **Frontend (optional):** React / TailwindCSS
+- **CI/CD:** GitHub Actions + Azure Web Apps
+
+## Project Structure
+```
+SOF-Extractor/
+├── docs/          # Documentation (this README, API docs)
+├── src/
+│   ├── extractor/ # Core parsing logic
+│   ├── api/       # API endpoints
+│   └── storage/   # Azure Blob interaction
+├── tests/         # Unit tests
+├── requirements.txt # Python dependencies
+├── main.py        # Entry point
+└── README.md      # Project introduction
+```
+
+## Setup & Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/your-repo/SOF-Extractor.git
+   cd SOF-Extractor
+   ```
+
+2. **Create a virtual environment & install dependencies:**
+   ```sh
+   python -m venv venv
+   source venv/bin/activate   # Linux/Mac
+   venv\Scripts\activate      # Windows
+   pip install -r requirements.txt
+   ```
+
+3. **Configure Azure Blob Storage connection string in `.env`:**
+   ```
+   AZURE_STORAGE_CONNECTION_STRING=your_connection_string
+   AZURE_CONTAINER_NAME=files
+   ```
+
+4. **Run the API:**
+   ```sh
+   python main.py
+   ```
+
+## Deployment (Azure)
+- Push changes to GitHub.
+- GitHub Actions CI/CD builds & deploys automatically to Azure App Service.
+- Your app is accessible at:  
+  `https://happy-meadow-0e97ac400.1.azurestaticapps.net/
+
+## Example Workflow
+1. Upload a Statement of Facts PDF.
+2. Extractor parses the SOF into structured JSON.
+3. JSON is stored in Azure Blob.
+4. API returns processed data for integration (Laytime calculator, analytics, etc).
